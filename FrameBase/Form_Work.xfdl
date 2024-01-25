@@ -4,6 +4,7 @@
     <Layouts>
       <Layout width="1080" height="670" screenid="Desktop_screen">
         <TextArea id="TextArea00" taborder="0" left="266" top="110" width="248" height="78" onchanged="TextArea00_onchanged"/>
+        <Combo id="Combo00" taborder="1" text="Combo00" left="256" top="49" width="408" height="68"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
