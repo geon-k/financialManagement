@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Top" width="1280" height="50" titletext="Form_Top">
+    <Layouts>
+      <Layout width="1280" height="50" screenid="Desktop_screen">
+        <Button id="btnTop0001" taborder="0" text="품목관리" left="200" top="0" width="120" height="50" onclick="btnTop" cssclass="btn_TF_menu"/>
+        <Button id="btnTop0001_00" taborder="1" text="발주관리" left="320" top="0" width="120" height="50" onclick="btnTop" cssclass="btn_TF_menu"/>
+        <Button id="btnTop0001_01" taborder="2" text="입고관리" left="440" top="0" width="120" height="50" onclick="btnTop" cssclass="btn_TF_menu"/>
+        <Button id="btnTop0001_02" taborder="3" text="출고관리" left="560" top="0" width="120" height="50" onclick="btnTop" cssclass="btn_TF_menu"/>
+        <Button id="btnTop0001_03" taborder="4" text="정산내역" left="680" top="0" width="120" height="50" onclick="btnTop" cssclass="btn_TF_menu"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>
