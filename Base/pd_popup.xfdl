@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="pd_popup" width="570" height="520" titletext="New Form">
+    <Layouts>
+      <Layout height="520" mobileorientation="landscape" width="570">
+        <Grid id="Grid00" taborder="0" left="10" top="41" width="551" height="467" binddataset="pd_ds" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="236"/>
+                <Column size="119"/>
+                <Column size="112"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="제품코드"/>
+                <Cell col="1" text="제품명"/>
+                <Cell col="2" text="제조사"/>
+                <Cell col="3" text="구매업체"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:productID"/>
+                <Cell col="1" text="bind:pName"/>
+                <Cell col="2" text="bind:mName"/>
+                <Cell col="3" text="bind:sName"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Radio id="Radio00" taborder="1" left="50" top="15" width="140" height="21" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" onitemchanged="Radio00_onitemchanged" index="0" text="제품명" value="pName">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="datacolumn">제품명</Col>
+                <Col id="codecolumn">pName</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">제품코드</Col>
+                <Col id="codecolumn">productID</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Edit id="Edit00" taborder="2" left="200" top="14" width="145" height="22"/>
+        <Button id="bt_search" taborder="3" text="조회" left="365" top="15" width="70" height="20" onclick="bt_search_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="pd_ds">
+        <ColumnInfo>
+          <Column id="productID" type="STRING" size="10"/>
+          <Column id="pName" type="STRING" size="255"/>
+          <Column id="mName" type="STRING" size="100"/>
+          <Column id="sName" type="STRING" size="100"/>
+          <Column id="unit" type="STRING" size="10"/>
+          <Column id="upUnit" type="INT" size="256"/>
+          <Column id="pDescription" type="STRING" size="255"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.bt_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	 if(this.Edit00.value == null && this.Edit00.value == ""){
+		alert("검색어를 입력해주세요.");
+	 }else{
+		var id = "Popupsearch";  
+		var url = "http://localhost/financial/product/Popupsearch?search="+this.Edit00.value+"&type="+this.Radio00.value;
+		//저장할때 server Dataset = 화면 dataset
+		var reqDs = "";
+		//조회할때 화면dataset=server Dataset
+		var respDs = "pd_ds=pdds";
+		var args = "";
+		var callback = "callback";
+	
+		this.transaction(id, url, reqDs, respDs, args, callback); 
+	 }
+};
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var row = this.pd_ds.rowposition;
+	var productID = this.pd_ds.getColumn(row, "productID");
+	this.parent.parent.PopupDiv00.closePopup(productID);
+};
+]]></Script>
+  </Form>
+</FDL>
